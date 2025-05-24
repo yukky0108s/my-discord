@@ -2,9 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const Parser = require('rss-parser');
 const cron = require('node-cron');
 
-const DISCORD_TOKEN = 'MTIyOTc5MzUzMjkyODA2OTczMw.G3lR0w.qSTY6OkmSh1seELZqgHwiQbckGJHMiGIswkVls';       // ← ここに自分のトークン
-const CHANNEL_ID = 'https://discord.com/channels/1039455922386382850/1226478966177792080';                 // ← DiscordチャンネルのID
-const FEED_URL = 'https://nitter.net/acosta_west/rss';
+
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
