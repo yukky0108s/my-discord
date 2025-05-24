@@ -1,18 +1,32 @@
 {
   "name": "sample",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bot/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
+    "@genkit-ai/googleai": "^1.10.0",
+    "@google/generative-ai": "^0.24.1",
     "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0",
     "node-cron": "^3.0.3",
+    "openai": "^4.103.0",
     "rss-parser": "^3.13.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukky0108s/my-discord.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yukky0108s/my-discord/issues"
+  },
+  "homepage": "https://github.com/yukky0108s/my-discord#readme",
+  "description": ""
 }
