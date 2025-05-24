@@ -2,8 +2,6 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const Parser = require('rss-parser');
 const cron = require('node-cron');
 
-
-
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
 });
