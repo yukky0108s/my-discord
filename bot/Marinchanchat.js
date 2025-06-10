@@ -1,8 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
 // Google Gemini APIの初期化
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENAI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+
+
 
 // 🔹 会話履歴保存用（ユーザーごと）
 const chatHistories = new Map();
@@ -12,7 +11,9 @@ const chatHistories = new Map();
  * @param {import('discord.js').Message} message - 受信したメッセージオブジェクト。
  * @param {import('discord.js').Client} client - Discordクライアントインスタンス。
  */
-async function Marinchat(message, client) {
+async function Marinchat(message, client,GOOGLE_GENAI_API_KEY) {
+    const genAI = new GoogleGenerativeAI(GOOGLE_GENAI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
     // Botへのメンションがあるかどうか確認（このハンドラーに渡る時点でほぼ確実ですが、念のため）
     if (!message.mentions.users.has(client.user.id) || message.mentions.users.size !== 1 || message.mentions.everyone) {
         return; // メンションがBotのみでなければ何もしない

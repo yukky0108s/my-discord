@@ -33,7 +33,7 @@ client.on('messageCreate', async (message) => {
     if (message.mentions.users.has(client.user.id) &&
         message.mentions.users.size === 1 &&
         !message.mentions.everyone) {
-        await Marinchat(message, client); // clientオブジェクトも渡す
+        await Marinchat(message, client,process.env.GOOGLE_GENAI_API_KEY); // clientオブジェクトも渡す
     }
     // 他のメッセージタイプやコマンドがあればここに追加
 });

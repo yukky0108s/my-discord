@@ -4,7 +4,6 @@
  */
 async function handleNewMember(member) {
     console.log(`${member.user.tag} が ${member.guild.name} に参加しました。`);
-
     // 付与したいロールの名前またはID
     // 確実性を高めるため、ロールIDを使用することを強く推奨します。
     // 例: const roleId = 'YOUR_ROLE_ID_HERE';
