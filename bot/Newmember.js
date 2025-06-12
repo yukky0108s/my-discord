@@ -14,11 +14,18 @@ async function handleNewMember(member) {
 
     // ロールIDで検索する場合の例:
     // const role = member.guild.roles.cache.get(roleId);
-
+    // 特定のチャンネルにウェルカムメッセージを送信する場合（オプション）
+    const welcomeChannelId = process.env.WelcomeChannelId; // ウェルカムメッセージを送信したいチャンネルのID
+    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelId);
     if (role) {
         try {
             await member.roles.add(role);
             console.log(`${member.user.tag} にロール '${role.name}' を付与しました。`);
+            try {
+            await welcomeChannel.send(`${member.user}, ようこそ **${member.guild.name}** へ！`);
+        } catch (error) {
+            console.error(`ウェルカムメッセージの送信に失敗しました:`, error);
+        }
         } catch (error) {
             console.error(`${member.user.tag} へのロール付与に失敗しました:`, error);
             // 権限不足などのエラーをDiscord上で通知することも検討してください。
@@ -28,17 +35,6 @@ async function handleNewMember(member) {
         console.warn(`ロール '${roleName}' が見つかりませんでした。サーバー設定を確認してください。`);
     }
 
-    // 特定のチャンネルにウェルカムメッセージを送信する場合（オプション）
-    const welcomeChannelId = process.env.WelcomeChannelId; // ウェルカムメッセージを送信したいチャンネルのID
-    const welcomeChannel = member.guild.channels.cache.get(welcomeChannelId);
-
-    if (welcomeChannel && welcomeChannel.isTextBased()) {
-        try {
-            await welcomeChannel.send(`${member.user}, ようこそ **${member.guild.name}** へ！`);
-        } catch (error) {
-            console.error(`ウェルカムメッセージの送信に失敗しました:`, error);
-        }
-    }
 }
 
 export { handleNewMember};
