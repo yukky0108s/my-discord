@@ -3,8 +3,8 @@ FROM node:18-alpine AS builder
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY package.json  .
-COPY yarn.lock .
+COPY package.json ./
+COPY package-lock.json ./
 RUN yarn install
 
 COPY . .
