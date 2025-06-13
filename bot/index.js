@@ -2,15 +2,16 @@ import dotenv from 'dotenv';
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
 import {Marinchat} from './Marinchanchat.js'
 import {handleNewMember} from './Newmember.js'
+import {voiceNotify} from './VoiceNotify.js'
 
 dotenv.config();
-
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,           // サーバー関連のイベント (ロール付与、チャンネル取得など)
         GatewayIntentBits.GuildMessages,    // メッセージイベント (メンション反応)
         GatewayIntentBits.MessageContent,   // メッセージ内容の読み取り (メンション反応)
         GatewayIntentBits.GuildMembers,     // メンバー関連イベント (新規参加者ロール付与)
+        GatewayIntentBits.GuildVoiceStates,
     ],
     partials: [Partials.GuildMember] // GuildMemberイベントの処理に必要
 });
@@ -36,6 +37,9 @@ client.on('messageCreate', async (message) => {
         await Marinchat(message, client,process.env.GOOGLE_GENAI_API_KEY); // clientオブジェクトも渡す
     }
     // 他のメッセージタイプやコマンドがあればここに追加
+});
+client.on('voiceStateUpdate', (oldState, newState) => {
+  voiceNotify(oldState, newState);
 });
 
 // ボットをDiscordにログインさせる

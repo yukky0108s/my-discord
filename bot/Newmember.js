@@ -17,12 +17,20 @@ async function handleNewMember(member) {
     // 特定のチャンネルにウェルカムメッセージを送信する場合（オプション）
     const welcomeChannelId = process.env.WelcomeChannelId; // ウェルカムメッセージを送信したいチャンネルのID
     const welcomeChannel = member.guild.channels.cache.get(welcomeChannelId);
+    const replies = [
+      'やあ！元気？',
+      'いらっしゃい！',
+      '',
+      'おっす！',
+    ];
     if (role) {
         try {
             await member.roles.add(role);
             console.log(`${member.user.tag} にロール '${role.name}' を付与しました。`);
             try {
-            await welcomeChannel.send(`${member.user}, ようこそ **${member.guild.name}** へ！`);
+                const randomIndex = Math.floor(Math.random() * replies.length);
+                const reply = replies[randomIndex];
+                await welcomeChannel.send(`${member.user}, ${reply} **${member.guild.name}** へ！`);
         } catch (error) {
             console.error(`ウェルカムメッセージの送信に失敗しました:`, error);
         }
