@@ -20,7 +20,6 @@ async function handleNewMember(member) {
     const replies = [
       'やあ！元気？',
       'いらっしゃい！',
-      '',
       'おっす！',
     ];
     if (role) {
@@ -30,7 +29,7 @@ async function handleNewMember(member) {
             try {
                 const randomIndex = Math.floor(Math.random() * replies.length);
                 const reply = replies[randomIndex];
-                await welcomeChannel.send(`${member.user}, ${reply} **${member.guild.name}** へ！`);
+                await welcomeChannel.send(`${member.user}, ${reply} **${member.guild.name}** ようこそへ！`);
         } catch (error) {
             console.error(`ウェルカムメッセージの送信に失敗しました:`, error);
         }
