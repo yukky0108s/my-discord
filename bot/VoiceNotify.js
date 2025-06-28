@@ -1,4 +1,4 @@
-const NOTIFY_CHANNEL_ID = process.env.VoiceCHANNEL_ID;
+const NOTIFY_CHANNEL_ID = process.env.VoiceCHANNEL_ID?.split(',') || [];
 
 async function voiceNotify(oldState, newState) {
   // 入室判定：前のVCがnull、今のVCが存在する
